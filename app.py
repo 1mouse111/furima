@@ -16,6 +16,9 @@ if st.button("ログイン"):
         st.rerun()
     else:
         st.error("ユーザーIDまたはパスワードが間違っています。")
+        
+st.page_link("pages/forgot.py", label="パスワードを忘れましたか?")
+
 
 # ログイン成功したら自動で home.py に遷移
 if st.session_state.logged_in:
