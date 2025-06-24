@@ -1,27 +1,12 @@
-# import streamlit as st
-
-# # 初期化
-# if "logged_in" not in st.session_state:
-#     st.session_state.logged_in = False
-# mail_db=[]
-# # ログインフォームの表示
-# st.title("メイルアドレス検索")
-# mail = st.text_input("メイルアドレス")
-# if st.button("検索"):
-#     if mail in mail_db:
-#         st.session_state.logged_in = True
-#         st.success("ログイン成功！")
-#         st.rerun()
-#     else:
-#         st.error("ユーザーIDまたはパスワードが間違っています。")
-# st.page_link("pages/forgot.py", label="パスワードを忘れましたか?")
-
-# # ログイン成功したら自動で home.py に遷移
-# if st.session_state.logged_in:
-#     st.switch_page("pages/home.py")
-
 import streamlit as st
+import sqlite3
 
+# SQLite データベースに接続（なければ新しく作成）
+conn = sqlite3.connect('userinfo.db')
+c = conn.cursor()
+c.execute("SELECT mail FROM users") # SELECT idも追加
+users = c.fetchall()
+mails=[row[0] for row in users]
 def password_reset_page():
     st.title("Password Reset")
     st.write("To reset your password, submit your username or your email address below. If we can find you in the database, an email will be sent to your email address, with instructions how to get access again.")
@@ -40,11 +25,11 @@ def password_reset_page():
             if submit_email:
                 # In a real application, you would add logic here to check the email
                 # and send an email. For this example, we just set the flag.
-                if email_address and "@" in email_address: # Simple email format check
+                if email_address in mails: # Simple email format check
                     st.session_state.form_submitted = True
                     st.rerun()
                 else:
-                    st.warning("Please enter a valid email address.")
+                    st.warning("Email address not found.")
 
     else:
         # This block is shown after the form is submitted

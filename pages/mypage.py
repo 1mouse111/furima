@@ -1,9 +1,8 @@
 import streamlit as st
-
+import time
 from utils import *
 
-
-# ハンバーガーメニューの削除
+# Global style
 st.markdown("""
     <style>
     header {visibility: hidden;}
@@ -11,10 +10,17 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
-# トップバーの表示
 topbar()
 
+# WRAP CONTENT in margin div
+st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
+for _ in range(9):
+    st.header("asdasd")
+
+st.number_input('wew')
+
+# Close div
+st.markdown('</div>', unsafe_allow_html=True)
 
 bottom_nav()
