@@ -47,10 +47,15 @@ conn.commit()
     # }
 st.markdown("""
     <style>
-    footer {
-        visibility: hidden;
+    [data-testid="stHeader"] {
+        display: none;
     }
-    .st-emotion-cache-zt5ig8 {visibility: hidden;}
+    [data-testid="stExpandSidebarButton"] {
+        display: block;
+    }
+    [data-testid="stStatusWidget"] {
+        display: none;
+    }
     div[data-testid="stSidebarNav"] {display: none;}
     </style>
 """, unsafe_allow_html=True)
