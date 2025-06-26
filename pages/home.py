@@ -42,11 +42,11 @@ c.execute('''CREATE TABLE IF NOT EXISTS item_tags (
 conn.commit()
 
 # --- Streamlit UI Setup ---
+    # [data-testid="stHeader"] {
+    #     display: none;
+    # }
 st.markdown("""
     <style>
-    [data-testid="stHeader"] {
-        display: none;
-    }
     div[data-testid="stSidebarNav"] {display: none;}
     </style>
 """, unsafe_allow_html=True)
