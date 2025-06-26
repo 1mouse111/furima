@@ -47,12 +47,11 @@ conn.commit()
     # }
 st.markdown("""
     <style>
-    div[data-testid="stHeader"] {
+    div[data-testid="stToolbarActions"] {
         display: none;
     }
-    div[data-testid="stExpandSidebarButton"] {
-        display: block;
-        visibility: visible;
+    div[data-testid="stMainMenu"] {
+        display: none;
     }
     div[data-testid="stStatusWidget"] {
         display: none;
