@@ -41,16 +41,14 @@ c.execute('''CREATE TABLE IF NOT EXISTS item_tags (
 conn.commit()
 
 # --- Streamlit UI Setup ---
-# ハンバーガーメニューの削除
-# st.markdown("""
-#     <style>
-#     header {visibility: hidden;}
-#     .css-18ni7ap.e8zbici2 {display: none;}
-#     </style>
-# """, unsafe_allow_html=True)
-
-# トップバーの表示
-# topbar()
+st.markdown("""
+    <style>
+    [data-testid="stHeader"] {
+        display: none;
+    }
+    div[data-testid="stSidebarNav"] {display: none;}
+    </style>
+""", unsafe_allow_html=True)
 
 st.markdown("<h2 style='margin-top: 20px; text-align: center;'>出品一覧</h2>", unsafe_allow_html=True)
 
