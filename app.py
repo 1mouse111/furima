@@ -18,6 +18,7 @@ if "current_user" not in st.session_state:
     st.session_state.current_user = None
 
 # ログインフォームの表示
+st.text("testoo")
 st.title("ログインページ")
 user_id_input = st.text_input("ユーザーID")
 password_input = st.text_input("パスワード", type="password")
