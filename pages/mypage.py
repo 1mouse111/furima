@@ -23,4 +23,4 @@ st.number_input('wew')
 # Close div
 st.markdown('</div>', unsafe_allow_html=True)
 
-bottom_nav()
+side_nav()

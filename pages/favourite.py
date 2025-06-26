@@ -17,4 +17,4 @@ topbar()
 
 
 
-bottom_nav()
+side_nav()

@@ -124,4 +124,4 @@ else:
     st.info("まだ出品されたアイテムはありません。")
 
 # --- Footer Navigation ---
-bottom_nav()
+side_nav()

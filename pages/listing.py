@@ -115,4 +115,4 @@ if st.button("アイテムを投稿"):
 
 conn.close()
 
-bottom_nav()
+side_nav()

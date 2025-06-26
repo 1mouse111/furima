@@ -3,7 +3,14 @@ import sqlite3
 import io # For displaying images
 
 from utils import *
-
+if 'current_user' not in st.session_state:
+    st.warning("このページを表示するにはログインが必要です。デモ用のユーザーIDを使用します。")
+else:
+    st.text("current user:{id} ".format(id=st.session_state.current_user))
+if "logged_in" not in st.session_state:
+    st.warning("not logged in")
+else:
+    st.text("logged in")
 # --- Database Initialization ---
 # SQLite データベースに接続（なければ新しく作成）
 conn = sqlite3.connect('items.db')
@@ -97,7 +104,6 @@ else:
     st.info("まだ出品されたアイテムはありません。")
 
 # --- Footer Navigation ---
-bottom_nav()
-
+side_nav()
 # 接続を閉じる
 conn.close()

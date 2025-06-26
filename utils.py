@@ -45,35 +45,9 @@ def topbar():
         </div>
     """, unsafe_allow_html=True)
 
+def side_nav():
+    st.sidebar.page_link("pages/home.py", label="🏠 ホーム", icon=None)
+    st.sidebar.page_link("pages/listing.py", label="📦 出品", icon=None)
+    st.sidebar.page_link("pages/mylisting.py", label="📦 私出品", icon=None)
+    st.sidebar.page_link("pages/mypage.py", label="👤 マイページ", icon=None)
 
-def bottom_nav():
-    # ボトナビ
-    st.markdown("""
-        <style>
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50px;
-            background-color: #f1f1f1;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-top: 1px solid #ccc;
-            z-index: 9999;
-        }
-        .bottom-nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        </style>
-
-        <div class="bottom-nav">
-            <a href="/home" target="_self"">🏠 ホーム</a>
-            <a href="/listing" target="_self">📦 出品</a>
-            <a href="/mypage" target="_self">👤 マイページ</a>
-        </div>
-    """, unsafe_allow_html=True)
