@@ -50,10 +50,7 @@ st.markdown("""
     div[data-testid="stToolbarActions"] {
         display: none;
     }
-    div[data-testid="stMainMenu"] {
-        display: none;
-    }
-    div[data-testid="stStatusWidget"] {
+    div[data-testid="stBaseButton-headerNoPadding"] {
         display: none;
     }
     div[data-testid="stSidebarNav"] {display: none;}
