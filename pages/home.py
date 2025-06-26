@@ -47,6 +47,10 @@ conn.commit()
     # }
 st.markdown("""
     <style>
+    footer {
+        visibility: hidden;
+    }
+    .st-emotion-cache-zt5ig8 {visibility: hidden;}
     div[data-testid="stSidebarNav"] {display: none;}
     </style>
 """, unsafe_allow_html=True)
