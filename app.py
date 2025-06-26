@@ -1,7 +1,7 @@
 import streamlit as st
 import sqlite3
 import rmtop
-
+st.set_page_config(initial_sidebar_state="collapsed")
 rmtop.notop()
 
 # SQLite データベースに接続（なければ新しく作成）
