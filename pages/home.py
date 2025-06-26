@@ -3,6 +3,7 @@ import sqlite3
 import io # For displaying images
 
 from utils import *
+st.set_page_config(initial_sidebar_state="expanded")
 if 'current_user' not in st.session_state:
     st.warning("このページを表示するにはログインが必要です。デモ用のユーザーIDを使用します。")
 else:
