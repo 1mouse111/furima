@@ -50,7 +50,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # トップバーの表示
-topbar()
+# topbar()
 
 st.markdown("<h2 style='margin-top: 20px; text-align: center;'>出品一覧</h2>", unsafe_allow_html=True)
 
