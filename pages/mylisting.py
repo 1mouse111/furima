@@ -15,7 +15,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Topbar Display ---
-topbar()
+
 
 # --- Database Initialization (for table creation if needed) ---
 # This part is generally placed at the top of each page for robustness,

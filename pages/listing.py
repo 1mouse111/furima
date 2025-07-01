@@ -13,7 +13,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # トップバーの表示
-topbar()
 
 # SQLite データベースに接続（なければ新しく作成）
 conn = sqlite3.connect('items.db')

@@ -13,8 +13,4 @@ st.markdown("""
 
 
 # トップバーの表示
-topbar()
-
-
-
 side_nav()

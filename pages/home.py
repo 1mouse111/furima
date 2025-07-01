@@ -15,7 +15,7 @@ else:
 # SQLite データベースに接続（なければ新しく作成）
 conn = sqlite3.connect('items.db')
 c = conn.cursor()
-
+side_nav()
 # テーブルがなければ作成 (念のため、全ページでテーブル構造を定義しておくのが安全)
 c.execute('''CREATE TABLE IF NOT EXISTS items (
                 itemid INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,14 +41,6 @@ c.execute('''CREATE TABLE IF NOT EXISTS item_tags (
 conn.commit()
 
 # --- Streamlit UI Setup ---
-st.markdown("""
-    <style>
-    [data-testid="stHeader"] {
-        display: none;
-    }
-    div[data-testid="stSidebarNav"] {display: none;}
-    </style>
-""", unsafe_allow_html=True)
 
 # トップバーの表示
 # topbar()
@@ -104,10 +96,5 @@ if items:
 else:
     st.info("まだ出品されたアイテムはありません。")
 
-# --- Footer Navigation ---
-st.sidebar.page_link("pages/home.py", label="🏠 ホーム", icon=None)
-st.sidebar.page_link("pages/listing.py", label="📦 出品", icon=None)
-st.sidebar.page_link("pages/mylisting.py", label="📦 私出品", icon=None)
-st.sidebar.page_link("pages/mypage.py", label="👤 マイページ", icon=None)
 # 接続を閉じる
 conn.close()
