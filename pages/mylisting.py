@@ -4,15 +4,9 @@ import io # For displaying images
 
 # Assuming utils.py contains topbar() and bottom_nav()
 from utils import *
+side_nav()
 
 # --- IMPORTANT: Hide default Streamlit header FIRST ---
-st.markdown("""
-    <style>
-    header {visibility: hidden;}
-    .css-18ni7ap.e8zbici2 {display: none;}
-    .stApp { padding-top: 70px; } /* Ensure content is not hidden by fixed topbar */
-    </style>
-""", unsafe_allow_html=True)
 
 # --- Topbar Display ---
 
@@ -124,4 +118,3 @@ else:
     st.info("まだ出品されたアイテムはありません。")
 
 # --- Footer Navigation ---
-side_nav()

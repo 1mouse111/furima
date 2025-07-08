@@ -1,21 +1,17 @@
 import streamlit as st
 import sqlite3
 import io # For displaying images
-
 from utils import *
-if 'current_user' not in st.session_state:
-    st.warning("このページを表示するにはログインが必要です。デモ用のユーザーIDを使用します。")
+if 'logged_in' not in st.session_state:
+    st.switch_page("app.py")
 else:
     st.text("current user:{id} ".format(id=st.session_state.current_user))
-if "logged_in" not in st.session_state:
-    st.warning("not logged in")
-else:
-    st.text("logged in")
+side_nav()
+
 # --- Database Initialization ---
 # SQLite データベースに接続（なければ新しく作成）
 conn = sqlite3.connect('items.db')
 c = conn.cursor()
-side_nav()
 # テーブルがなければ作成 (念のため、全ページでテーブル構造を定義しておくのが安全)
 c.execute('''CREATE TABLE IF NOT EXISTS items (
                 itemid INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,7 +39,6 @@ conn.commit()
 # --- Streamlit UI Setup ---
 
 # トップバーの表示
-# topbar()
 
 st.markdown("<h2 style='margin-top: 20px; text-align: center;'>出品一覧</h2>", unsafe_allow_html=True)
 
@@ -52,49 +47,42 @@ c.execute("""
     SELECT
         items.itemid,
         items.name,
-        items.description,
-        items.price,
         items.picture,
+        items.price,
         items.number,
-        items.availability,
-        GROUP_CONCAT(tags.tag_name, ', ') AS tags
+        items.availability
     FROM
         items
-    LEFT JOIN
-        item_tags ON items.itemid = item_tags.itemid
-    LEFT JOIN
-        tags ON item_tags.tagid = tags.tagid
-    GROUP BY
-        items.itemid
+    WHERE
+        items.availability = 1
     ORDER BY
         items.itemid DESC
 """)
-items = c.fetchall()
+items_summary = c.fetchall()
+conn.close()
 
 # アイテム情報を表示
-if items:
-    for item in items:
-        item_id, item_name, description, price, picture_blob, number, availability, tags = item
+if items_summary:
+    for i,item in enumerate(items_summary):
+        item_id, item_name, picture_blob, price, number, availability = item
 
-        st.subheader(item_name)
+        with st.container(border=True):
+            st.subheader(item_name)
+            col1, col2 =st.columns(2)
+            with col1:
+                if picture_blob:
+                    # st.image requires a file-like object or path, or bytes for supported formats
+                    st.image(io.BytesIO(picture_blob), caption=item_name, width=200)
+                else:
+                    st.write("画像なし")
+            with col2:
+                st.write(f"**価格:** ¥{price:,}")
+                st.write(f"**在庫数:** {number}")
 
-        if picture_blob:
-            # st.image requires a file-like object or path, or bytes for supported formats
-            st.image(io.BytesIO(picture_blob), caption=item_name, width=200)
-
-        st.write(description)
-        st.write(f"**価格:** ¥{price}")
-        st.write(f"**在庫数:** {number}")
-        st.write(f"**ステータス:** {'販売中' if availability == 1 else '売り切れ'}")
-
-        if tags:
-            st.write(f"**タグ:** {tags}")
-        else:
-            st.write("**タグ:** なし")
-        st.write("---")
-
+            if st.button(f"詳細を見る", key=f"details_{item_id}"):
+                st.session_state.selected_item_id = item_id 
+                st.switch_page("pages/item_detail.py") 
 else:
     st.info("まだ出品されたアイテムはありません。")
 
 # 接続を閉じる
-conn.close()
